@@ -200,6 +200,47 @@
   line-height: 1.6;
 }
 
+.save-error-banner {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(192, 57, 43, 0.28);
+  background: rgba(192, 57, 43, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.save-error-copy {
+  margin: 0;
+  color: rgba(192, 57, 43, 0.95);
+  line-height: 1.6;
+  font-size: 0.92rem;
+}
+
+.save-error-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.save-error-export,
+.save-error-dismiss {
+  border-radius: 0.7rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  background: #fff;
+  color: rgba(192, 57, 43, 0.95);
+}
+
+.save-error-export {
+  background: rgba(192, 57, 43, 0.92);
+  color: #fff;
+  border-color: transparent;
+}
+
 .complete-actions {
   display: grid;
   grid-template-columns: 1fr;

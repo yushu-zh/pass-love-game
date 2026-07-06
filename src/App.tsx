@@ -49,6 +49,7 @@ function App() {
     start: false,
   })
   const [notice, setNotice] = useState('')
+  const [saveError, setSaveError] = useState<string | null>(null)
   const [newRoundGuardOpen, setNewRoundGuardOpen] = useState(false)
   const [newRoundConfirmed, setNewRoundConfirmed] = useState(false)
 
@@ -75,7 +76,33 @@ function App() {
       return
     }
 
-    void saveSnapshot(snapshot)
+    let cancelled = false
+
+    saveSnapshot(snapshot)
+      .then(() => {
+        if (!cancelled) {
+          setSaveError(null)
+        }
+      })
+      .catch((error) => {
+        if (cancelled) {
+          return
+        }
+
+        const isQuota =
+          error?.name === 'QuotaExceededError' ||
+          error?.code === 22 ||
+          /quota/i.test(String(error?.message ?? ''))
+        setSaveError(
+          isQuota
+            ? '本地存储空间已满，最新内容未能保存。建议导出备份后清理旧数据。'
+            : '本地存储不可用（可能处于无痕模式或被禁用），最新内容未能保存。建议立即导出备份。',
+        )
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [loaded, snapshot])
 
   useEffect(() => {
@@ -338,6 +365,25 @@ function App() {
       )}
 
       <section className="page-shell">
+        {saveError && (
+          <section className="save-error-banner" role="alert" aria-live="assertive">
+            <p className="save-error-copy">{saveError}</p>
+            <div className="save-error-actions">
+              <button type="button" className="save-error-export" onClick={handleExport}>
+                导出 JSON
+              </button>
+              <button
+                type="button"
+                className="save-error-dismiss"
+                aria-label="关闭保存失败提示"
+                onClick={() => setSaveError(null)}
+              >
+                知道了
+              </button>
+            </div>
+          </section>
+        )}
+
         <section className="content-card">
           {isIdle && (
             <div className="idle-panel">
