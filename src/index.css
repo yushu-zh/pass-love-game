@@ -4,7 +4,8 @@
     sans-serif;
   --font-display: 'Avenir Next', 'SF Pro Display', 'PingFang SC', 'Noto Sans SC',
     sans-serif;
-  --font-song: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif SC', serif;
+  --font-song: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif SC', 'Source Han Serif SC',
+    serif;
   --ink: #0b1f3a;
   --surface: #fafcff;
   --card: #ffffff;
@@ -29,6 +30,9 @@
 
 html {
   min-height: 100%;
+  /* 锁定横向滚动：仅允许上下滑动 */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -36,6 +40,10 @@ body {
   min-width: 320px;
   min-height: 100svh;
   background: transparent;
+  /* 阻止移动端左右拖动页面 */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
 }
 
 button,
