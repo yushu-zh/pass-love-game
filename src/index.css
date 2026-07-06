@@ -1,0 +1,53 @@
+:root {
+  --font-body:
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC',
+    sans-serif;
+  --font-display: 'Avenir Next', 'SF Pro Display', 'PingFang SC', 'Noto Sans SC',
+    sans-serif;
+  --font-song: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif SC', serif;
+  --ink: #0b1f3a;
+  --surface: #fafcff;
+  --card: #ffffff;
+  --accent: #1b6fd8;
+  --accent-soft: #dceafb;
+  --muted: #5b7a9d;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink);
+  background-color: var(--surface);
+  background-image: radial-gradient(
+    ellipse 60% 42% at 100% 0%,
+    rgba(27, 111, 216, 0.08),
+    transparent 72%
+  );
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+  background: transparent;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+textarea {
+  scrollbar-width: thin;
+}
+
+#root {
+  min-height: 100svh;
+}
