@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 
+import diaryTemplate from '../diary.html?raw'
 import './App.css'
+import { buildDiaryHtml } from './lib/exportHtml'
 import {
   FIELD_LIMITS,
   buildExportPayload,
@@ -229,6 +231,21 @@ function App() {
     setNotice('已导出 JSON 备份。')
   }
 
+  const handleExportHtml = () => {
+    const payload = buildExportPayload(snapshot)
+    const html = buildDiaryHtml(diaryTemplate, payload)
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    const date = payload.exportedAt.slice(0, 10)
+
+    link.href = url
+    link.download = `pass-love-game-${date}.html`
+    link.click()
+    URL.revokeObjectURL(url)
+    setNotice('已导出 HTML 备份。')
+  }
+
   const openNewRoundGuard = () => {
     setNewRoundGuardOpen(true)
     setNewRoundConfirmed(false)
@@ -304,6 +321,15 @@ function App() {
             disabled={!hasProgress(snapshot)}
           >
             导出 JSON
+          </button>
+
+          <button
+            type="button"
+            className="toolbox-action toolbox-action-secondary"
+            onClick={handleExportHtml}
+            disabled={!hasProgress(snapshot)}
+          >
+            导出 HTML
           </button>
         </div>
 
