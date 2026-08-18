@@ -36,28 +36,6 @@
 
 ---
 
-## 如何运行
-
-**技术栈**：React 19 + TypeScript + Vite 8，PWA（vite-plugin-pwa），本地存储（localforage）。
-
-**前置**：Node.js 20 及以上。
-
-```bash
-# 安装依赖
-npm install
-
-# 启动开发服务器（带热更新，改代码即时生效）
-npm run dev
-
-# 生产构建（输出到 dist/，PWA 离线包在此生成）
-npm run build
-
-# 本地预览构建产物（测试「添加到主屏幕 / 离线」用这个；dev 模式下 PWA 不生效）
-npm run preview
-```
-
-部署：已配好 `netlify.toml`，构建命令 `npm run build`、发布目录 `dist`、Node 20 环境。
-
 **关键文件**
 
 | 文件 | 作用 |
